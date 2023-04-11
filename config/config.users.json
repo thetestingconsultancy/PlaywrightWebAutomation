@@ -1,0 +1,19 @@
+{
+    "uat" : {
+        "admin": {
+            "name": "AMSAuto Test",
+            "brigadeName": "Automated Testflight",
+            "username": "Test Email ID",
+            "password": "Test Password"
+        }
+    },
+    "stage" : {
+        "admin": {
+            "name": "AMSAuto Test",
+            "brigadeName": "Automated Testflight",
+            "username": "Test Email ID",
+            "password": "Test Password"
+        }
+    }
+
+}

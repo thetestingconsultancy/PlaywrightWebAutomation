@@ -1,0 +1,23 @@
+{
+  "name": "ams_web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:uat": "set NODE_ENV=uat && npx playwright test --project=uat",
+    "test:stage": "set NODE_ENV=stage && npx playwright test --project=stage",
+    "test:uat-grep": "set NODE_ENV=uat && npx playwright test --project=uat --grep",
+    "test:stage-grep": "set NODE_ENV=stage && npx playwright test --project=stage --grep",
+    "show-report": "npx playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.22.2"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.3",
+    "dotenv": "^16.0.1"
+  }
+}

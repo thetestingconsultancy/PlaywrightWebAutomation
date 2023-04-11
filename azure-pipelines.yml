@@ -1,0 +1,40 @@
+trigger:
+- none
+
+pool:
+  name: Azure Pipelines
+
+steps:
+- task: Bash@3
+  displayName: "Install playwright npm dependencies"
+  inputs:
+    targetType: 'inline'
+    script: |
+      cd $(System.DefaultWorkingDirectory)
+      npm install
+      npx playwright install
+  
+- task: Bash@3
+  displayName: "Run AMS Web UI Tests"
+  inputs:
+    targetType: 'inline'
+    script: |
+      cd $(System.DefaultWorkingDirectory)
+      npx playwright test --project=stage --retries=2
+
+- task: Bash@3
+  displayName: "Check agent build directory"
+  inputs:
+     targetType: 'inline'
+     script: |
+       cd $(Agent.BuildDirectory)/s/playwright-report
+       echo ------------------------------ Moving HTML file ------------------------------
+       mv * $(Build.ArtifactStagingDirectory)
+  condition: succeededOrFailed()
+
+- task: PublishBuildArtifacts@1
+  displayName: "Publish Build Artifact" 
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: drop
+  condition: succeededOrFailed()
